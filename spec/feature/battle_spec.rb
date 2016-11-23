@@ -34,8 +34,9 @@ RSpec.feature "Attacking P2", type: :feature do
 
   scenario "Player 2's health should decrease by 10HP" do
     sign_in_and_play
+    srand(55)
     attack!
-    expect(page).to have_content("Charizard: #{90}HP")
+    expect(page).to have_content("Charizard: 85HP")
 
   end
 
@@ -51,7 +52,7 @@ RSpec.feature "Turn switching", type: :feature do
     sign_in_and_play
     attack!
     attack!
-    expect(page).to have_content("Pikachu: 90HP")
+    expect(page).not_to have_content("Pikachu: 100HP")
   end
 end
 
@@ -60,5 +61,23 @@ RSpec.feature "Losing", type: :feature do
     sign_in_and_play
     19.times {attack!}
     expect(page).to have_content("Charizard has lost!")
+  end
+end
+
+RSpec.feature "Extra moves", type: :feature do
+
+  scenario "the paralyse move" do
+    sign_in_and_play
+    srand(1)
+    click_button("paralyse")
+    expect(page).to have_content("Charizard was paralysed!")
+  end
+
+  scenario "paralysed pokemon can't attack" do
+    sign_in_and_play
+    srand(1)
+    click_button("paralyse")
+    click_button("proceed")
+    expect(page).to have_content("Pikachu's turn!")
   end
 end

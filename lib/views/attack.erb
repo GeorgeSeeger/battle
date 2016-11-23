@@ -2,6 +2,11 @@
   <%= @game.player_defense.name %> attacked <%=@game.player_attack.name%>!
 </div>
 <div>
+  <% if @game.player_attack.is_paralysed? %>
+    <%= @game.player_attack.name %> was paralysed!
+  <% end %>
+</div>
+<div>
 <form action = "/play" method = "get">
   <input id = "proceed" type = "submit" value = "Proceed" />
 </form>

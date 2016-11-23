@@ -46,7 +46,11 @@ class Battle < Sinatra::Base
     erb :lose
   end
 
-
+  get '/paralyse' do
+    @game = Game.instance
+    @game.paralyse
+    erb :attack
+  end
 
   run! if app_file == $0
 end

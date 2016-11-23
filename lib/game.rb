@@ -12,6 +12,11 @@ class Game
     turn_switch
   end
 
+  def paralyse
+    player_defense.take_paralysis
+    turn_switch
+  end
+
   def player_attack
     players.first
   end

@@ -21,6 +21,12 @@ describe Game do
 
   end
 
+  describe "Paralyse" do
+    it "should damage an opponent" do
+      expect(game.player_defense).to receive(:take_paralysis)
+      game.paralyse
+    end
+  end
 
 
 end
