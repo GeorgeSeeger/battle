@@ -25,4 +25,9 @@ describe Player do
     expect(player).to be_is_paralysed
   end
 
+  it "should be able to unparalyse" do
+    player.unparalyse
+    expect(player).not_to be_is_paralysed
+  end
+
 end

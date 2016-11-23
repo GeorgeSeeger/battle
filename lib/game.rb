@@ -3,18 +3,16 @@ class Game
   attr_reader :player1, :player2
 
   def initialize(player1,player2)
-    @players = player1, player2
-    @player1, @player2 = players
+    @players = player2, player1
+    @player2, @player1 = players
   end
 
   def attack
-    player_defense.take_damage
-    turn_switch
+    player_defense.take_damage unless player_attack.is_paralysed?
   end
 
   def paralyse
-    player_defense.take_paralysis
-    turn_switch
+    player_defense.take_paralysis unless player_attack.is_paralysed?
   end
 
   def player_attack
@@ -26,6 +24,7 @@ class Game
   end
 
   def turn_switch
+    player_attack.unparalyse
     players.reverse!
   end
 

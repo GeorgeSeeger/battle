@@ -78,6 +78,7 @@ RSpec.feature "Extra moves", type: :feature do
     srand(1)
     click_button("paralyse")
     click_button("proceed")
-    expect(page).to have_content("Pikachu's turn!")
+    click_button("attack")
+    expect(page).to have_content("Charizard is paralysed")
   end
 end

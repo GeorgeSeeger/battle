@@ -28,6 +28,7 @@ class Battle < Sinatra::Base
 
   get '/play' do
     @game = Game.instance
+    @game.turn_switch
     if @game.player_attack.health > 0
       erb :play
     else

@@ -19,6 +19,11 @@ class Player
   def is_paralysed?
     @paralysed
   end
+
+  def unparalyse
+    self.paralysed = false
+  end
+  
   private
 
   attr_writer :health, :paralysed
